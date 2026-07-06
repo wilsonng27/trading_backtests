@@ -1,48 +1,33 @@
-  # trading_backtests
+# Trading Backtests
 
-  A lightweight Python backtesting workspace with:
+  This repository contains a reusable Python backtesting engine plus a public
+  example strategy template.
 
-  - `backtest_template/`: reusable backtest engine
-  - `strategy_template_long_only_orb/`: example strategy template built on top
-  of the engine
+  It is set up so the engine can be shared publicly while private strategy ideas
+  stay outside the repo.
 
-  This repo is structured so the engine and one public example strategy can be
-  shared, while private strategy folders stay out of the repository.
+  ## Included
 
-  ## Structure
+  - `backtest_template/`
+    Shared engine for loading data, generating signals, simulating trades, and
+    producing analytics.
 
-  ```text
-  trading_backtests/
-  ├── backtest_template/
-  └── strategy_template_long_only_orb/
+  - `strategy_template_long_only_orb/`
+    Example strategy folder showing how to build a strategy outside the engine
+    package.
 
-  ## What’s Included
+  ## Features
 
-  ### backtest_template/
+  - Databento-style 1-minute OHLCV CSV / CSV.zst support
+  - Front-month continuous futures construction
+  - Multi-timeframe backtesting workflow
+  - Strategy interface built around `Signals`
+  - Slippage, fees, cooldown, and time-stop handling
+  - Equity curve, Monte Carlo, and R-distribution outputs
 
-  Core engine components:
+  ## Install
 
-  - data loading for Databento-style 1-minute OHLCV CSV / CSV.zst
-  - front-month continuous contract building
-  - OHLCV resampling for execution and regime timeframes
-  - strategy interface via Signals
-  - trade simulation with slippage, fees, cooldown, and time stop
-  - analytics, bootstrap stats, Monte Carlo analysis, and plots
-
-  ### strategy_template_long_only_orb/
-
-  A public example/template strategy that shows how to:
-
-  - keep strategy logic outside the engine
-  - implement build_signals(df_exec, df_regime)
-  - configure a standalone run.py
-  - generate output artifacts such as equity curve, Monte Carlo, and R-
-    distribution charts
-
-  ## Installation
-
-  Python 3.12+ recommended.
-
+  ```bash
   pip install -r requirements.txt
 
   ## Run
@@ -51,13 +36,13 @@
 
   python -m strategy_template_long_only_orb.run
 
-  You can also run the engine smoke test:
+  You can also run the engine example directly:
 
   python -m backtest_template.main
 
-  ## Input Data
+  ## Expected Data Format
 
-  The loader expects Databento-style 1-minute OHLCV data with these columns:
+  Input data should contain:
 
   - ts_event
   - open
@@ -67,9 +52,7 @@
   - volume
   - symbol
 
-  ## Example Result
-
-  Below is an example result from the public template strategy.
+  ## Example Results
 
   ### Equity Curve
 
@@ -83,13 +66,15 @@
 
   R Distribution
 
+  ## Repository Layout
+
+  trading_backtests/
+  ├── backtest_template/
+  └── strategy_template_long_only_orb/
+
   ## Notes
 
-  - This public repo includes only backtest_template/ and
-    strategy_template_long_only_orb/.
-
-  - Private strategies, local datasets, caches, and most generated artifacts are
-    intentionally excluded.
-
-  - The example strategy is meant as a template for building new strategies on
-    top of the shared engine.
+  - This repo is the public subset of a larger private research workspace.
+  - The engine is reusable across multiple strategy folders.
+  - The included strategy folder is meant as a template, not a claim of
+    production readiness.
