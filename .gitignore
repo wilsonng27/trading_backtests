@@ -1,0 +1,34 @@
+# Ignore everything by default at the workspace root
+*
+
+# Keep these repo files
+!.gitignore
+!README.md
+!requirements.txt
+
+# Keep the public engine folder
+!backtest_template/
+!backtest_template/**
+
+# Keep the public example/template strategy folder
+!strategy_template_long_only_orb/
+!strategy_template_long_only_orb/**
+
+# Ignore junk and generated artifacts inside included folders
+backtest_template/.DS_Store
+backtest_template/.idea/
+backtest_template/__pycache__/
+backtest_template/**/*.py[cod]
+backtest_template/_demo_out/
+backtest_template/cache/
+backtest_template/plots/
+backtest_template/*.parquet
+backtest_template/*.png
+
+strategy_template_long_only_orb/.DS_Store
+strategy_template_long_only_orb/.idea/
+strategy_template_long_only_orb/__pycache__/
+strategy_template_long_only_orb/**/*.py[cod]
+strategy_template_long_only_orb/*.parquet
+strategy_template_long_only_orb/*.png
+
