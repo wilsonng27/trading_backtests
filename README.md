@@ -1,80 +1,95 @@
-# trading_backtests
+  # trading_backtests
 
-Public subset of a larger local backtesting workspace.
+  A lightweight Python backtesting workspace with:
 
-This repo intentionally exposes only:
+  - `backtest_template/`: reusable backtest engine
+  - `strategy_template_long_only_orb/`: example strategy template built on top
+  of the engine
 
-- `backtest_template/`: the reusable engine
-- `strategy_template_long_only_orb/`: a template strategy folder built on top of that engine
+  This repo is structured so the engine and one public example strategy can be
+  shared, while private strategy folders stay out of the repository.
 
-Everything else in the local `trading_backtests/` workspace stays private and should not be pushed.
+  ## Structure
 
-## Included Folders
+  ```text
+  trading_backtests/
+  ├── backtest_template/
+  └── strategy_template_long_only_orb/
 
-### `backtest_template/`
+  ## What’s Included
 
-Shared backtest engine:
+  ### backtest_template/
 
-- data loading for Databento-style 1-minute OHLCV CSV / CSV.zst
-- front-month continuous contract construction
-- resampling into execution and regime timeframes
-- signal contract via `Signals`
-- trade simulation with slippage, fees, cooldown, and time stop
-- analytics, bootstrap stats, Monte Carlo analysis, and plots
+  Core engine components:
 
-### `strategy_template_long_only_orb/`
+  - data loading for Databento-style 1-minute OHLCV CSV / CSV.zst
+  - front-month continuous contract building
+  - OHLCV resampling for execution and regime timeframes
+  - strategy interface via Signals
+  - trade simulation with slippage, fees, cooldown, and time stop
+  - analytics, bootstrap stats, Monte Carlo analysis, and plots
 
-Example/template strategy package that imports `backtest_template` and shows how to:
+  ### strategy_template_long_only_orb/
 
-- create a strategy folder outside the engine
-- implement `build_signals(df_exec, df_regime)`
-- configure a runnable `run.py`
+  A public example/template strategy that shows how to:
 
-## Local Layout
+  - keep strategy logic outside the engine
+  - implement build_signals(df_exec, df_regime)
+  - configure a standalone run.py
+  - generate output artifacts such as equity curve, Monte Carlo, and R-
+    distribution charts
 
-```text
-trading_backtests/
-├── backtest_template/
-└── strategy_template_long_only_orb/
-```
+  ## Installation
 
-## Install
+  Python 3.12+ recommended.
 
-Python 3.12+ recommended.
+  pip install -r requirements.txt
 
-```bash
-pip install -r requirements.txt
-```
+  ## Run
 
-## Run
+  From the repo root:
 
-From the repo root:
+  python -m strategy_template_long_only_orb.run
 
-```bash
-python -m strategy_template_long_only_orb.run
-```
+  You can also run the engine smoke test:
 
-Or run the engine smoke test:
+  python -m backtest_template.main
 
-```bash
-python -m backtest_template.main
-```
+  ## Input Data
 
-## Input Data
+  The loader expects Databento-style 1-minute OHLCV data with these columns:
 
-The loader expects Databento-style 1-minute OHLCV data with:
+  - ts_event
+  - open
+  - high
+  - low
+  - close
+  - volume
+  - symbol
 
-- `ts_event`
-- `open`
-- `high`
-- `low`
-- `close`
-- `volume`
-- `symbol`
+  ## Example Result
 
-## Notes Before Publishing
+  Below is an example result from the public template strategy.
 
-- This repo should be initialized at the parent `trading_backtests/` level only if you want both folders in one repo.
-- The `.gitignore` is set up to ignore all other sibling strategy folders and local artifacts.
-- Review hardcoded local paths in runnable files before pushing if you want a cleaner public repo.
+  ### Equity Curve
 
+  Equity Curve
+
+  ### Monte Carlo
+
+  Monte Carlo
+
+  ### R Distribution
+
+  R Distribution
+
+  ## Notes
+
+  - This public repo includes only backtest_template/ and
+    strategy_template_long_only_orb/.
+
+  - Private strategies, local datasets, caches, and most generated artifacts are
+    intentionally excluded.
+
+  - The example strategy is meant as a template for building new strategies on
+    top of the shared engine.
