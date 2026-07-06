@@ -78,3 +78,16 @@
   - The engine is reusable across multiple strategy folders.
   - The included strategy folder is meant as a template, not a claim of
     production readiness.
+ ## Example Results
+
+  ### Equity Curve
+  ![Equity Curve](https://raw.githubusercontent.com/wilsonng27/
+  trading_backtests/main/strategy_template_long_only_orb/equity_curve.png)
+
+  ### Monte Carlo
+  ![Monte Carlo](https://raw.githubusercontent.com/wilsonng27/trading_backtests/
+  main/strategy_template_long_only_orb/monte_carlo.png)
+
+  ### R Distribution
+  ![R Distribution](https://raw.githubusercontent.com/wilsonng27/
+  trading_backtests/main/strategy_template_long_only_orb/r_distribution.png)
