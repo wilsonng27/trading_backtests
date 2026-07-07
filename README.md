@@ -91,11 +91,3 @@
 
   <img src="r_distribution.png" alt="R Distribution" width="900">
 
-  ## Notes Before Publishing
-
-  - This repo should be initialized at the parent `trading_backtests` level only
-  if you want both folders in one repo.
-  - The `.gitignore` is set up to ignore all other sibling strategy folders and
-  local artifacts.
-  - Review hardcoded local paths in runnable files before pushing if you want a
-  cleaner public repo.
